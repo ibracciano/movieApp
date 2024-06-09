@@ -1,0 +1,29 @@
+#react toogle-mode 
+import { DarkModeSwitch } from 'react-toggle-dark-mode';
+const [isDarkMode, setDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!isDarkMode);
+  };
+
+<DarkModeSwitch
+      checked={isDarkMode}
+      onChange={toggleDarkMode}
+      size={120}
+    />
+
+#Api
+Now Playing : https://api.themoviedb.org/3/movie/now_playing
+Popular : https://api.themoviedb.org/3/movie/popular
+Top rated : https://api.themoviedb.org/3/movie/top_rated
+Upcoming : https://api.themoviedb.org/3/movie/upcoming
+
+details : https://api.themoviedb.org/3/movie/{movie_id}
+Search : https://api.themoviedb.org/3/search/movie
+
+TV: https://api.themoviedb.org/3/discover/tv
+Tv today : https://api.themoviedb.org/3/tv/airing_today
+auteurs populaires : https://api.themoviedb.org/3/person/popular
+auteur par ID: https://api.themoviedb.org/3/person/{person_id}
+
+movie credits : https://api.themoviedb.org/3/person/{person_id}/movie_credits
