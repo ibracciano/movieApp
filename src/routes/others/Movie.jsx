@@ -35,9 +35,9 @@ const Movie = () => {
 
   return (
     <main className="min-h-screen bg-fixed bg-cover bg-movie">
-      <section className="pt-24 w-[90%] mx-auto relative">
-        <div className="flex items-center gap-10 text-white bg-cover rounded-md bg-reel">
-          <div className="w-[20%]">
+      <section className="pt-24 w-full md:w-[90%] mx-auto relative">
+        <div className="flex flex-col items-center gap-10 text-white bg-cover rounded-md md:flex-row bg-reel">
+          <div className="w-full md:w-[30%] lg:[20%]">
             <img
               src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
               alt={movie.title}
@@ -45,7 +45,7 @@ const Movie = () => {
             />
           </div>
 
-          <div className="p-5 bg-black bg-opacity-50 w-[80%] ">
+          <div className="p-5 bg-black bg-opacity-50 w-full md:w-[70%] lg:[80%] ">
             <h2 className="text-2xl font-bold text-transparent bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text">
               {movie.title}({year})
             </h2>
@@ -137,8 +137,8 @@ const Movie = () => {
           </div>
         )}
 
-        <PopActor />
       </section>
+      <PopActor />
     </main>
   );
 };

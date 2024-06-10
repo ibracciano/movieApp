@@ -25,7 +25,7 @@ const Favorite = () => {
         </p>
       </div>
 
-      <section className="grid grid-cols-5 gap-4 mt-5 text-white cursor-pointer w-[90%] mx-auto">
+      <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-5 text-white cursor-pointer w-[90%] mx-auto">
         {favoriteList.length === 0 ? (
           <p className="">Your cart is Empty</p>
         ) : (

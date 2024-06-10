@@ -11,8 +11,8 @@ const Actor = () => {
 
   return (
     <section className="bg-cover py-28 bg-movie">
-      <div className="flex items-center gap-10 w-[90%] mx-auto">
-        <div className="w-[35%]">
+      <div className="flex flex-col lg:flex-row items-center gap-10 w-[90%] mx-auto">
+        <div className="w-full  lg:w-[35%]">
           <img
             src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
             alt={actor.name}
@@ -20,7 +20,7 @@ const Actor = () => {
           />
         </div>
 
-        <div className="w-[65%] text-white">
+        <div className="w-full  lg:w-[65%] text-white">
           <h2 className="text-5xl font-bold text-transparent bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text">
             {actor.name}
           </h2>

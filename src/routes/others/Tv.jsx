@@ -33,9 +33,9 @@ const Tv = () => {
   // const emptyStars = Array(per2).fill(0);
   return (
     <main className="min-h-screen bg-fixed bg-cover bg-cinema">
-      <section className="pt-24 w-[90%] mx-auto relative">
-        <div className="flex items-center gap-10 text-white bg-cover rounded-md bg-reel">
-          <div className="w-[20%]">
+      <section className="pt-24 md:w-[90%] w-full mx-auto relative">
+        <div className="flex flex-col items-center gap-10 text-white bg-cover rounded-md md:flex-row bg-reel">
+          <div className="w-full md:w-[30%] lg:w-[20%]">
             <img
               src={`https://image.tmdb.org/t/p/original/${Tv.poster_path}`}
               alt={Tv.name}
@@ -43,12 +43,12 @@ const Tv = () => {
             />
           </div>
 
-          <div className="p-5 bg-black bg-opacity-50 w-[80%]">
+          <div className="p-5 bg-black bg-opacity-50 w-full md:w-[70%] lg:w-[80%]">
             <h2 className="text-2xl font-bold text-transparent bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text">
               {Tv.name}({year})
             </h2>
 
-            <div className="flex gap-2 text-sm">
+            <div className="flex gap-2 text-[8px] md:text-[10px] lg:text-sm mb-3">
               <span>
                 | {date_diff_first}({countries[0].iso_3166_1})
               </span>
@@ -67,7 +67,7 @@ const Tv = () => {
               </span>
             </div>
 
-            <div className="flex items-center gap-10 mb-3 text-sm">
+            <div className="flex items-center gap-10 mb-3 text-[8px] md:text-[10px] lg:text-sm">
               <div className="flex items-center gap-2">
                 <span>User rating : </span>
 

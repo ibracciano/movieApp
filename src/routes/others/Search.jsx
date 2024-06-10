@@ -9,7 +9,7 @@ const Search = () => {
 
   return (
     <main className="min-h-screen pt-20 bg-fixed bg-cover bg-movie">
-      <section className="grid grid-cols-5 gap-4 mt-5 text-white cursor-pointer w-[90%] mx-auto">
+      <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-5 text-white cursor-pointer w-[90%] mx-auto">
         {results.filter(item => item.poster_path !== null).map((movie) => (
           <Link
             to={`/movie/${movie.id}`}
