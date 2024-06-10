@@ -64,11 +64,95 @@ export default function Swip() {
           </div>
         </div>
       </div>
+      {/* for desktop */}
       <Swiper
         Swiper
         watchSlidesProgress={true}
         slidesPerView={5}
-        className="my-10 space-x-5 cursor-pointer mySwiper w-[90%]"
+        className="my-10 space-x-5 cursor-pointer mySwiper w-[90%] hidden md:hidden lg:block"
+
+      >
+        {data.map((movie) => (
+          <SwiperSlide
+            key={movie.id}
+            className="w-[300px] h-[450px] bg-cover bg-gradient-to-r from-slate-950 to-black px-5 pt-3 rounded-md hover:scale-105 transition-all duration-700"
+            onClick={() => handleNavigate(movie.id)}
+          >
+            <img
+              src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+              alt={movie.title}
+              className="w-full rounded-md"
+            />
+            <div className="flex items-center justify-between mt-3">
+              <h3 className="my-2 text-sm font-bold text-transparent text-white bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text">
+                {movie.title || movie.name}
+              </h3>
+
+              <CircularProgressbar
+                value={movie.vote_average * 10}
+                text={`${movie.vote_average * 10}%`}
+                className="w-10 h-10"
+                styles={buildStyles({
+                  textColor: "white",
+                  pathColor: "red",
+                  trailColor: "white",
+                })}
+              />
+            </div>
+            <p className="px-2 text-transparent border-l-4 border-pink-400 bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text">
+              {movie.release_date || movie.first_air_date}
+            </p>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+      {/* for tablet */}
+      <Swiper
+        Swiper
+        watchSlidesProgress={true}
+        slidesPerView={3}
+        className="my-10 space-x-5 cursor-pointer mySwiper w-[90%] hidden md:block lg:hidden"
+      >
+        {data.map((movie) => (
+          <SwiperSlide
+            key={movie.id}
+            className="w-[300px] h-[450px] bg-cover bg-gradient-to-r from-slate-950 to-black px-5 pt-3 rounded-md hover:scale-105 transition-all duration-700"
+            onClick={() => handleNavigate(movie.id)}
+          >
+            <img
+              src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+              alt={movie.title}
+              className="w-full rounded-md"
+            />
+            <div className="flex items-center justify-between mt-3">
+              <h3 className="my-2 text-sm font-bold text-transparent text-white bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text">
+                {movie.title || movie.name}
+              </h3>
+
+              <CircularProgressbar
+                value={movie.vote_average * 10}
+                text={`${movie.vote_average * 10}%`}
+                className="w-10 h-10"
+                styles={buildStyles({
+                  textColor: "white",
+                  pathColor: "red",
+                  trailColor: "white",
+                })}
+              />
+            </div>
+            <p className="px-2 text-transparent border-l-4 border-pink-400 bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text">
+              {movie.release_date || movie.first_air_date}
+            </p>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+      {/* for mobile */}
+      <Swiper
+        Swiper
+        watchSlidesProgress={true}
+        slidesPerView={1}
+        className="my-10 space-x-5 cursor-pointer mySwiper w-[90%] md:hidden"
       >
         {data.map((movie) => (
           <SwiperSlide

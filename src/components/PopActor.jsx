@@ -65,11 +65,79 @@ const PopActor = () => {
             </div>
           </div>
         </div>
-
+        {/* for destop */}
         <Swiper
           watchSlidesProgress={true}
           slidesPerView={5}
-          className="my-10 space-x-5 cursor-pointer mySwiper"
+          className="hidden my-10 space-x-5 cursor-pointer mySwiper lg:block"
+        >
+          {actors.map((actor) => (
+            <SwiperSlide
+              key={actor.id}
+              className="w-[300px] group h-[350px] bg-cover bg-gradient-to-r from-slate-950 to-black px-5 pt-3 rounded-md hover:scale-105 transition-all duration-700 relative"
+              onClick={() => handleNavigate(actor.id)}
+            >
+              <img
+                src={`https://image.tmdb.org/t/p/original/${actor.profile_path}`}
+                alt={actor.title}
+                className="w-full rounded-md"
+              />
+              <div className="absolute inset-0 top-0 flex flex-col items-center justify-center mt-3 bg-black opacity-0 bg-opacity-80 group-hover:opacity-100">
+                <h3 className="my-2 text-sm font-bold text-transparent text-white bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text">
+                  {actor.name}
+                </h3>
+                {actor.known_for.map((item, index) => (
+                  <p
+                    key={index}
+                    className="text-[12px] text-center max-w-28 text-transparent bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text"
+                  >
+                    {item.original_title}
+                  </p>
+                ))}
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        {/* for tablet */}
+        <Swiper
+          watchSlidesProgress={true}
+          slidesPerView={3}
+          className="hidden my-10 space-x-5 cursor-pointer mySwiper md:block lg:hidden"
+        >
+          {actors.map((actor) => (
+            <SwiperSlide
+              key={actor.id}
+              className="w-[300px] group h-[350px] bg-cover bg-gradient-to-r from-slate-950 to-black px-5 pt-3 rounded-md hover:scale-105 transition-all duration-700 relative"
+              onClick={() => handleNavigate(actor.id)}
+            >
+              <img
+                src={`https://image.tmdb.org/t/p/original/${actor.profile_path}`}
+                alt={actor.title}
+                className="w-full rounded-md"
+              />
+              <div className="absolute inset-0 top-0 flex flex-col items-center justify-center mt-3 bg-black opacity-0 bg-opacity-80 group-hover:opacity-100">
+                <h3 className="my-2 text-sm font-bold text-transparent text-white bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text">
+                  {actor.name}
+                </h3>
+                {actor.known_for.map((item, index) => (
+                  <p
+                    key={index}
+                    className="text-[12px] text-center max-w-28 text-transparent bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text"
+                  >
+                    {item.original_title}
+                  </p>
+                ))}
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        {/* for mobile */}
+        <Swiper
+          watchSlidesProgress={true}
+          slidesPerView={1}
+          className="my-10 space-x-5 cursor-pointer mySwiper md:hidden"
         >
           {actors.map((actor) => (
             <SwiperSlide

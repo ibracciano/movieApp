@@ -50,6 +50,7 @@ export default function Slide() {
 
   return (
     <>
+      {/* for destop */}
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -62,7 +63,7 @@ export default function Slide() {
         }}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper w-[100%] h-screen"
+        className="mySwiper w-[100%] h-screen hidden lg:block"
       >
         <SwiperSlide className="relative flex bg-cover bg-rat">
           <div className="flex flex-col items-center justify-center w-full h-full bg-opacity-85 bg-slate-950"></div>
@@ -202,6 +203,437 @@ export default function Slide() {
           <div className="flex flex-col items-center justify-center w-full h-full bg-opacity-85 bg-slate-950"></div>
           <div className="w-[70%] flex gap-5 absolute left-[15%] top-[20%]">
             {data.slice(9, 12).map((movie) => (
+              <div key={movie.key} className="relative group">
+                <img
+                  src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                  alt=""
+                  className="p-4 rounded-md bg-slate-950"
+                />
+                <div className="absolute inset-0 py-5 bg-black opacity-0 px-7 bg-opacity-80 group-hover:opacity-100">
+                  <h3 className="text-lg font-bold  text-transparent text-white max-w-[200px] bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text">
+                    {movie.title}
+                  </h3>
+                </div>
+                {favoriteList.find((item) => item.id === movie.id) ? (
+                  <button
+                    className="absolute top-[50%] left-[20%] flex gap-2 items-center border-2 border-red-600 p-1 rounded-full hover:border-white opacity-0 group-hover:opacity-100"
+                    onClick={() => dispatch(remove(movie))}
+                  >
+                    <MdDelete
+                      style={{ color: "white" }}
+                      size={30}
+                      className="bg-red-600 rounded-full hover:bg-black"
+                    />
+                  </button>
+                ) : (
+                  <button
+                    className="absolute top-[50%] left-[20%] flex gap-2 items-center border-2 border-red-600 p-1 rounded-full hover:border-white opacity-0 group-hover:opacity-100"
+                    onClick={() => dispatch(add(movie))}
+                  >
+                    <CiHeart
+                      style={{ color: "white" }}
+                      size={30}
+                      className="bg-red-600 rounded-full hover:bg-black"
+                    />
+                  </button>
+                )}
+
+                <button
+                  className="absolute top-[50%] left-[40%] flex gap-2 items-center border-2 border-red-600 p-1 rounded-full hover:border-white opacity-0 group-hover:opacity-100"
+                  onClick={() => handleNavigate(movie.id)}
+                >
+                  <IoEyeSharp
+                    style={{ color: "white" }}
+                    size={30}
+                    className="bg-red-600 rounded-full hover:bg-black"
+                  />
+                </button>
+                <CircularProgressbar
+                  value={movie.vote_average * 10}
+                  text={`${movie.vote_average * 10}%`}
+                  className="absolute w-10 h-10 top-[50%] left-[60%] opacity-0 group-hover:opacity-100"
+                  styles={buildStyles({
+                    textColor: "white",
+                    pathColor: "red",
+                    trailColor: "white",
+                  })}
+                />
+                <p className="absolute text-white text-[8px] bottom-0 left-0 px-8 py-3 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100">
+                  {movie.overview}
+                </p>
+              </div>
+            ))}
+          </div>
+        </SwiperSlide>
+      </Swiper>
+
+      {/* for tablet */}
+      <Swiper
+        spaceBetween={30}
+        centeredSlides={true}
+        // autoplay={{
+        //   delay: 4000,
+        //   disableOnInteraction: false,
+        // }}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Autoplay, Pagination, Navigation]}
+        className="mySwiper w-[100%] h-screen hidden md:block lg:hidden"
+      >
+        <SwiperSlide className="relative flex bg-cover bg-rat">
+          <div className="flex flex-col items-center justify-center w-full h-full bg-opacity-85 bg-slate-950"></div>
+          <div className="w-[70%] flex gap-5 absolute left-[15%] top-[30%]">
+            {data.slice(0, 2).map((movie) => (
+              <div key={movie.key} className="relative group">
+                <img
+                  src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                  alt=""
+                  className="p-4 rounded-md bg-slate-950"
+                />
+                <div className="absolute inset-0 py-5 bg-black opacity-0 px-7 bg-opacity-80 group-hover:opacity-100">
+                  <h3 className="text-lg font-bold  text-transparent text-white max-w-[200px] bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text">
+                    {movie.title}
+                  </h3>
+                </div>
+                {favoriteList.find((item) => item.id === movie.id) ? (
+                  <button
+                    className="absolute top-[50%] left-[20%] flex gap-2 items-center border-2 border-red-600 p-1 rounded-full hover:border-white opacity-0 group-hover:opacity-100"
+                    onClick={() => dispatch(remove(movie))}
+                  >
+                    <MdDelete
+                      style={{ color: "white" }}
+                      size={30}
+                      className="bg-red-600 rounded-full hover:bg-black"
+                    />
+                  </button>
+                ) : (
+                  <button
+                    className="absolute top-[50%] left-[20%] flex gap-2 items-center border-2 border-red-600 p-1 rounded-full hover:border-white opacity-0 group-hover:opacity-100"
+                    onClick={() => dispatch(add(movie))}
+                  >
+                    <CiHeart
+                      style={{ color: "white" }}
+                      size={30}
+                      className="bg-red-600 rounded-full hover:bg-black"
+                    />
+                  </button>
+                )}
+
+                <button
+                  className="absolute top-[50%] left-[40%] flex gap-2 items-center border-2 border-red-600 p-1 rounded-full hover:border-white opacity-0 group-hover:opacity-100"
+                  onClick={() => handleNavigate(movie.id)}
+                >
+                  <IoEyeSharp
+                    style={{ color: "white" }}
+                    size={30}
+                    className="bg-red-600 rounded-full hover:bg-black"
+                  />
+                </button>
+                <CircularProgressbar
+                  value={movie.vote_average * 10}
+                  text={`${movie.vote_average * 10}%`}
+                  className="absolute w-10 h-10 top-[50%] left-[60%] opacity-0 group-hover:opacity-100"
+                  styles={buildStyles({
+                    textColor: "white",
+                    pathColor: "red",
+                    trailColor: "white",
+                  })}
+                />
+                <p className="absolute text-white text-[8px] bottom-0 left-0 px-8 py-3 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100">
+                  {movie.overview}
+                </p>
+              </div>
+            ))}
+          </div>
+        </SwiperSlide>
+
+        <SwiperSlide className="relative flex bg-cover bg-rat">
+          <div className="flex flex-col items-center justify-center w-full h-full bg-opacity-85 bg-slate-950"></div>
+          <div className="w-[70%] flex gap-5 absolute left-[15%] top-[30%]">
+            {data.slice(3, 5).map((movie) => (
+              <div key={movie.key} className="relative group">
+                <img
+                  src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                  alt=""
+                  className="p-4 rounded-md bg-slate-950"
+                />
+                <div className="absolute inset-0 py-5 bg-black opacity-0 px-7 bg-opacity-80 group-hover:opacity-100">
+                  <h3 className="text-lg font-bold  text-transparent text-white max-w-[200px] bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text">
+                    {movie.title}
+                  </h3>
+                </div>
+                {favoriteList.find((item) => item.id === movie.id) ? (
+                  <button
+                    className="absolute top-[50%] left-[20%] flex gap-2 items-center border-2 border-red-600 p-1 rounded-full hover:border-white opacity-0 group-hover:opacity-100"
+                    onClick={() => dispatch(remove(movie))}
+                  >
+                    <MdDelete
+                      style={{ color: "white" }}
+                      size={30}
+                      className="bg-red-600 rounded-full hover:bg-black"
+                    />
+                  </button>
+                ) : (
+                  <button
+                    className="absolute top-[50%] left-[20%] flex gap-2 items-center border-2 border-red-600 p-1 rounded-full hover:border-white opacity-0 group-hover:opacity-100"
+                    onClick={() => dispatch(add(movie))}
+                  >
+                    <CiHeart
+                      style={{ color: "white" }}
+                      size={30}
+                      className="bg-red-600 rounded-full hover:bg-black"
+                    />
+                  </button>
+                )}
+
+                <button
+                  className="absolute top-[50%] left-[40%] flex gap-2 items-center border-2 border-red-600 p-1 rounded-full hover:border-white opacity-0 group-hover:opacity-100"
+                  onClick={() => handleNavigate(movie.id)}
+                >
+                  <IoEyeSharp
+                    style={{ color: "white" }}
+                    size={30}
+                    className="bg-red-600 rounded-full hover:bg-black"
+                  />
+                </button>
+                <CircularProgressbar
+                  value={movie.vote_average * 10}
+                  text={`${movie.vote_average * 10}%`}
+                  className="absolute w-10 h-10 top-[50%] left-[60%] opacity-0 group-hover:opacity-100"
+                  styles={buildStyles({
+                    textColor: "white",
+                    pathColor: "red",
+                    trailColor: "white",
+                  })}
+                />
+                <p className="absolute text-white text-[8px] bottom-0 left-0 px-8 py-3 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100">
+                  {movie.overview}
+                </p>
+              </div>
+            ))}
+          </div>
+        </SwiperSlide>
+
+        <SwiperSlide className="relative flex bg-cover bg-rat">
+          <div className="flex flex-col items-center justify-center w-full h-full bg-opacity-85 bg-slate-950"></div>
+          <div className="w-[70%] flex gap-5 absolute left-[15%] top-[30%]">
+            {data.slice(9, 11).map((movie) => (
+              <div key={movie.key} className="relative group">
+                <img
+                  src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                  alt=""
+                  className="p-4 rounded-md bg-slate-950"
+                />
+                <div className="absolute inset-0 py-5 bg-black opacity-0 px-7 bg-opacity-80 group-hover:opacity-100">
+                  <h3 className="text-lg font-bold  text-transparent text-white max-w-[200px] bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text">
+                    {movie.title}
+                  </h3>
+                </div>
+                {favoriteList.find((item) => item.id === movie.id) ? (
+                  <button
+                    className="absolute top-[50%] left-[20%] flex gap-2 items-center border-2 border-red-600 p-1 rounded-full hover:border-white opacity-0 group-hover:opacity-100"
+                    onClick={() => dispatch(remove(movie))}
+                  >
+                    <MdDelete
+                      style={{ color: "white" }}
+                      size={30}
+                      className="bg-red-600 rounded-full hover:bg-black"
+                    />
+                  </button>
+                ) : (
+                  <button
+                    className="absolute top-[50%] left-[20%] flex gap-2 items-center border-2 border-red-600 p-1 rounded-full hover:border-white opacity-0 group-hover:opacity-100"
+                    onClick={() => dispatch(add(movie))}
+                  >
+                    <CiHeart
+                      style={{ color: "white" }}
+                      size={30}
+                      className="bg-red-600 rounded-full hover:bg-black"
+                    />
+                  </button>
+                )}
+
+                <button
+                  className="absolute top-[50%] left-[40%] flex gap-2 items-center border-2 border-red-600 p-1 rounded-full hover:border-white opacity-0 group-hover:opacity-100"
+                  onClick={() => handleNavigate(movie.id)}
+                >
+                  <IoEyeSharp
+                    style={{ color: "white" }}
+                    size={30}
+                    className="bg-red-600 rounded-full hover:bg-black"
+                  />
+                </button>
+                <CircularProgressbar
+                  value={movie.vote_average * 10}
+                  text={`${movie.vote_average * 10}%`}
+                  className="absolute w-10 h-10 top-[50%] left-[60%] opacity-0 group-hover:opacity-100"
+                  styles={buildStyles({
+                    textColor: "white",
+                    pathColor: "red",
+                    trailColor: "white",
+                  })}
+                />
+                <p className="absolute text-white text-[8px] bottom-0 left-0 px-8 py-3 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100">
+                  {movie.overview}
+                </p>
+              </div>
+            ))}
+          </div>
+        </SwiperSlide>
+      </Swiper>
+
+      {/* for mobile */}
+      <Swiper
+        spaceBetween={30}
+        centeredSlides={true}
+        // autoplay={{
+        //   delay: 4000,
+        //   disableOnInteraction: false,
+        // }}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Autoplay, Pagination, Navigation]}
+        className="mySwiper w-[100%] h-screen md:hidden"
+      >
+        <SwiperSlide className="relative flex bg-cover bg-rat">
+          <div className="flex flex-col items-center justify-center top-[30%]">
+            {data.slice(0, 1).map((movie) => (
+              <div key={movie.key} className="relative group">
+                <img
+                  src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                  alt=""
+                  className="p-4 rounded-md bg-slate-950"
+                />
+                <div className="absolute inset-0 py-5 bg-black opacity-0 px-7 bg-opacity-80 group-hover:opacity-100">
+                  <h3 className="text-lg font-bold  text-transparent text-white max-w-[200px] bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text">
+                    {movie.title}
+                  </h3>
+                </div>
+                {favoriteList.find((item) => item.id === movie.id) ? (
+                  <button
+                    className="absolute top-[50%] left-[20%] flex gap-2 items-center border-2 border-red-600 p-1 rounded-full hover:border-white opacity-0 group-hover:opacity-100"
+                    onClick={() => dispatch(remove(movie))}
+                  >
+                    <MdDelete
+                      style={{ color: "white" }}
+                      size={30}
+                      className="bg-red-600 rounded-full hover:bg-black"
+                    />
+                  </button>
+                ) : (
+                  <button
+                    className="absolute top-[50%] left-[20%] flex gap-2 items-center border-2 border-red-600 p-1 rounded-full hover:border-white opacity-0 group-hover:opacity-100"
+                    onClick={() => dispatch(add(movie))}
+                  >
+                    <CiHeart
+                      style={{ color: "white" }}
+                      size={30}
+                      className="bg-red-600 rounded-full hover:bg-black"
+                    />
+                  </button>
+                )}
+
+                <button
+                  className="absolute top-[50%] left-[40%] flex gap-2 items-center border-2 border-red-600 p-1 rounded-full hover:border-white opacity-0 group-hover:opacity-100"
+                  onClick={() => handleNavigate(movie.id)}
+                >
+                  <IoEyeSharp
+                    style={{ color: "white" }}
+                    size={30}
+                    className="bg-red-600 rounded-full hover:bg-black"
+                  />
+                </button>
+                <CircularProgressbar
+                  value={movie.vote_average * 10}
+                  text={`${movie.vote_average * 10}%`}
+                  className="absolute w-10 h-10 top-[50%] left-[60%] opacity-0 group-hover:opacity-100"
+                  styles={buildStyles({
+                    textColor: "white",
+                    pathColor: "red",
+                    trailColor: "white",
+                  })}
+                />
+                <p className="absolute text-white text-[8px] bottom-0 left-0 px-8 py-3 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100">
+                  {movie.overview}
+                </p>
+              </div>
+            ))}
+          </div>
+        </SwiperSlide>
+
+        <SwiperSlide className="relative flex bg-cover bg-rat">
+          <div className="flex flex-col items-center justify-center top-[30%]">
+            {data.slice(1, 2).map((movie) => (
+              <div key={movie.key} className="relative group">
+                <img
+                  src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                  alt=""
+                  className="p-4 rounded-md bg-slate-950"
+                />
+                <div className="absolute inset-0 py-5 bg-black opacity-0 px-7 bg-opacity-80 group-hover:opacity-100">
+                  <h3 className="text-lg font-bold  text-transparent text-white max-w-[200px] bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text">
+                    {movie.title}
+                  </h3>
+                </div>
+                {favoriteList.find((item) => item.id === movie.id) ? (
+                  <button
+                    className="absolute top-[50%] left-[20%] flex gap-2 items-center border-2 border-red-600 p-1 rounded-full hover:border-white opacity-0 group-hover:opacity-100"
+                    onClick={() => dispatch(remove(movie))}
+                  >
+                    <MdDelete
+                      style={{ color: "white" }}
+                      size={30}
+                      className="bg-red-600 rounded-full hover:bg-black"
+                    />
+                  </button>
+                ) : (
+                  <button
+                    className="absolute top-[50%] left-[20%] flex gap-2 items-center border-2 border-red-600 p-1 rounded-full hover:border-white opacity-0 group-hover:opacity-100"
+                    onClick={() => dispatch(add(movie))}
+                  >
+                    <CiHeart
+                      style={{ color: "white" }}
+                      size={30}
+                      className="bg-red-600 rounded-full hover:bg-black"
+                    />
+                  </button>
+                )}
+
+                <button
+                  className="absolute top-[50%] left-[40%] flex gap-2 items-center border-2 border-red-600 p-1 rounded-full hover:border-white opacity-0 group-hover:opacity-100"
+                  onClick={() => handleNavigate(movie.id)}
+                >
+                  <IoEyeSharp
+                    style={{ color: "white" }}
+                    size={30}
+                    className="bg-red-600 rounded-full hover:bg-black"
+                  />
+                </button>
+                <CircularProgressbar
+                  value={movie.vote_average * 10}
+                  text={`${movie.vote_average * 10}%`}
+                  className="absolute w-10 h-10 top-[50%] left-[60%] opacity-0 group-hover:opacity-100"
+                  styles={buildStyles({
+                    textColor: "white",
+                    pathColor: "red",
+                    trailColor: "white",
+                  })}
+                />
+                <p className="absolute text-white text-[8px] bottom-0 left-0 px-8 py-3 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100">
+                  {movie.overview}
+                </p>
+              </div>
+            ))}
+          </div>
+        </SwiperSlide>
+
+        <SwiperSlide className="relative flex bg-cover bg-rat">
+          <div className="flex flex-col items-center justify-center top-[30%]">
+            {data.slice(2, 3).map((movie) => (
               <div key={movie.key} className="relative group">
                 <img
                   src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}

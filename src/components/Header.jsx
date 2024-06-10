@@ -28,7 +28,7 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 z-50 w-full py-2 text-white bg-black shadow-sm">
-      <nav className="flex items-center justify-between w-[90%] lg:w-[90%] mx-auto font-semibold">
+      <nav className="flex items-center justify-between w-[90%]  lg:w-[90%] mx-auto font-semibold">
         <Link to="" className="flex items-center gap-1 text-2xl">
           <RiMovie2Fill style={{ color: "red" }} size={40} />
           <span className="font-bold">MovieS</span>

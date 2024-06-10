@@ -6,10 +6,10 @@ const AiringToday = () => {
     const { results } = useLoaderData()
     return (
         <main className="pt-24 bg-fixed bg-cover bg-cinema">
-            <h1 className="mb-2 text-6xl font-bold leading-tight text-center text-white">
+            <h1 className="mb-2 text-xl font-bold leading-tight text-center text-white md:text-4xl">
                 Airing Today
             </h1>
-            <section className="grid grid-cols-5 gap-4 mt-5 text-white cursor-pointer w-[90%] mx-auto">
+            <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-5 text-white cursor-pointer w-[90%] mx-auto">
                 {results.map((movie) => (
                     <Link to={`/tv/${movie.id}`}
                         key={movie.id}
