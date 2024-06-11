@@ -1,19 +1,24 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { IoEyeSharp } from "react-icons/io5";
 
-const Category = () => {
+import { Link, useLoaderData } from "react-router-dom";
+
+const Category = ({ data }) => {
   const [category, setCategory] = useState("category");
-  const navigate = useNavigate();
+  const [item, setItem] = useState([]);
 
-  //   console.log(category);
+  console.log(item);
 
-  function handleNavigate() {
-    if (category !== "category") {
-      // cette ecriture permet d'ajouter la recherche sur URL
-      navigate(`/category?q=${category}`);
-      setCategory("category");
-    }
-  }
+  const handleSearch = () => {
+    const value = data.find((item) => item.name === category);
+    setItem(value);
+  };
+
+  const { results } = useLoaderData();
+  const moviesCategory = results.filter((movie) =>
+    movie.genre_ids.includes(item?.id)
+  );
+  // console.log(moviesCategory);
 
   return (
     <div>
@@ -24,80 +29,55 @@ const Category = () => {
             name=""
             id=""
             className="text-pink-600 bg-black border border-white rounded-md outline-none "
+            onChange={(e) => setCategory(e.target.value)}
           >
-            <option value="category" onChange={() => setCategory("category")}>
-              choose a category
-            </option>
-            <option value="action" onChange={() => setCategory("action")}>
-              action
-            </option>
-            <option value="comedy" onChange={() => setCategory("comedy")}>
-              comedy
-            </option>
-            <option value="horror" onChange={() => setCategory("horror")}>
-              horror
-            </option>
-            <option value="romance" onChange={() => setCategory("romance")}>
-              romance
-            </option>
-            <option value="scifi" onChange={() => setCategory("scifi")}>
-              scifi
-            </option>
-            <option value="thriller" onChange={() => setCategory("thriller")}>
-              thriller
-            </option>
-            <option value="war" onChange={() => setCategory("war")}>
-              war
-            </option>
-            <option value="western" onChange={() => setCategory("western")}>
-              western
-            </option>
-            <option value="adventure" onChange={() => setCategory("adventure")}>
-              adventure
-            </option>
-            <option value="animation" onChange={() => setCategory("animation")}>
-              animation
-            </option>
-            <option value="crime" onChange={() => setCategory("crime")}>
-              crime
-            </option>
-            <option
-              value="documentary"
-              onChange={() => setCategory("documentary")}
-            >
-              documentary
-            </option>
-            <option value="family" onChange={() => setCategory("family")}>
-              family
-            </option>
-            <option value="fantasy" onChange={() => setCategory("fantasy")}>
-              fantasy
-            </option>
-            <option value="history" onChange={() => setCategory("history")}>
-              history
-            </option>
+            <option value="category">choose a category</option>
+            {data.map((categorie) => (
+              <option value={categorie.name} key={categorie.id}>
+                {categorie.name}
+              </option>
+            ))}
           </select>
 
           <button
             className="px-2 py-1 font-semibold rounded-md bg-gradient-to-r from-pink-500 to-rose-500 scl hover:scale-105"
-            onClick={handleNavigate}
+            onClick={handleSearch}
           >
             Search...
           </button>
         </div>
 
-        <div>
-          <section className="grid grid-cols-5 gap-5 ">
-            {/* {results.filter(movie => ()).map((movie) => (
-              <div key={movie.id}>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                  alt=""
-                  className="rounded-md"
-                />
+        <div className="grid grid-cols-5 gap-5">
+          {moviesCategory.map((movie) => (
+            <div
+              key={movie.id}
+              className="px-3 py-5 transition-all duration-700 rounded-md bg-gradient-to-r from-slate-950 to-black hover:saturate-200 hover:scale-110"
+            >
+              <img
+                src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                alt={movie.title || movie.name}
+                className="rounded-md"
+              />
+              <div className="flex items-center justify-between mt-3">
+                <h3 className="my-2 text-sm font-bold text-transparent text-white bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text">
+                  {movie.title || movie.name}
+                </h3>
               </div>
-            ))} */}
-          </section>
+              <div className="flex justify-between mt-5">
+                <p className="px-2 text-transparent border-l-4 border-pink-400 bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text">
+                  {movie.release_date || movie.first_air_date}
+                </p>
+                <button>
+                  <Link
+                    to={`/movie/${movie.id}`}
+                    className="flex items-center gap-2"
+                  >
+                    <IoEyeSharp className="w-8 h-8 p-1 rounded-full bg-gradient-to-r from-pink-500 to-rose-500" />
+                  </Link>
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
     </div>

@@ -7,7 +7,7 @@ import Favorite from "./routes/others/Favorite";
 
 
 import About from "./routes/others/About";
-import { TvId, actor, airingTv, movies, moviesId, ontheairTv, popularMovies, popularTv, searchCategory, searchMovie, topMovies, topRatedTv, upcomingMovies } from "./api/api";
+import { TvId, actor, airingTv, movies, moviesId, ontheairTv, popularMovies, popularTv, searchMovie, topMovies, topRatedTv, upcomingMovies } from "./api/api";
 import NowPlaying from "./routes/movies/NowPlaying";
 import Popular from "./routes/movies/Popular";
 
@@ -109,7 +109,7 @@ const App = () => {
         {
           path: "category",
           element: <Categorie />,
-          loader: searchCategory,
+          loader: movies,
         },
       ],
     },

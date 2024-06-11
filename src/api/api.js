@@ -159,28 +159,7 @@ export const searchMovie = async ({ request }) => {
     }
 }
 
-export const searchCategory = async ({ request }) => {
-    // le but de request est de recuperer la query ajoutée à url search
 
-    console.log(request);
-    const url = new URL(request.url)
-    // console.log(url);
-    const searchItem = url.searchParams.get("q")
-    // console.log(searchItem);
-
-
-
-    let api = `https://api.themoviedb.org/3/search/movie?api_key=${import.meta.env.VITE_API_KEY}&query=${searchItem}`
-    const response = await fetch(api);
-    try {
-        const data = await response.json();
-        // console.log(data);
-        return data;
-
-    } catch (error) {
-        throw new Error(error)
-    }
-}
 
 
 

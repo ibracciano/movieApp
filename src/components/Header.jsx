@@ -84,6 +84,20 @@ const Header = () => {
             </ul>
           </li>
 
+
+
+          <li className="relative">
+            <NavLink
+              to="category"
+              className={({ isActive }) =>
+                isActive ? "text-red-500 font-semibold" : ""
+              }
+            >
+              Categories
+            </NavLink>
+
+          </li>
+
           <li className="relative">
             <NavLink
               to="favorite"
