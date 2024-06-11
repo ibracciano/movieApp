@@ -23,7 +23,7 @@ const Category = ({ data }) => {
   return (
     <div>
       <section className="py-2 mt-10 text-white w-[90%] mx-auto">
-        <div className="space-x-16 mx-[25%] mb-10">
+        <div className="mx-[25%] mb-10 flex flex-col md:flex-row justify-center gap-4">
           <span>Search by Category</span>
           <select
             name=""
@@ -47,7 +47,7 @@ const Category = ({ data }) => {
           </button>
         </div>
 
-        <div className="grid grid-cols-5 gap-5">
+        <div className="grid gap-5 md:grid-cols-3 lg:grid-cols-5">
           {moviesCategory.map((movie) => (
             <div
               key={movie.id}
